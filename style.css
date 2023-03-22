@@ -1,0 +1,46 @@
+/* Import the font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); 
+
+:root {
+    --GAMEWIDTH: 80vw;
+    --BOARDWIDTH: calc(100vw / 1.75);
+    --BOARDHEIGHT: calc(var(--BOARDWIDTH) * 3 / 4);
+    --CLICKERSWIDTH: calc(var(--BOARDWIDTH) * 0.78);
+    --CLICKERWIDTH: calc(var(--BOARDWIDTH) * 0.09);
+}
+
+html, body {
+    background-color: white;
+    height: 95%;
+    width: auto;
+    margin: 0px auto;
+    font-family: 'Nunito', sans-serif;
+}
+
+.game {
+    position: relative;
+    width: var(--GAMEWIDTH);
+    top: calc((100vh - var(--BOARDHEIGHT)) / 2);
+    left: calc(50% - (var(--GAMEWIDTH) / 2));
+}
+
+.board {
+    position: absolute;
+    height: var(--BOARDHEIGHT);
+    width: var(--BOARDWIDTH);
+    left: calc((var(--GAMEWIDTH) - var(--BOARDWIDTH)) / 2);
+}
+
+.clickers {
+    position: absolute;
+    width: var(--CLICKERSWIDTH);
+    height: calc(var(--BOARDHEIGHT) * 0.9);
+    left: calc((var(--GAMEWIDTH) - var(--CLICKERSWIDTH)) / 2);
+    top: calc(-1 * var(--BOARDHEIGHT) / 10);
+}
+
+.clicker {
+    position: absolute;
+    height: calc(var(--BOARDHEIGHT) * 0.9);
+    width: var(--CLICKERWIDTH);
+}
