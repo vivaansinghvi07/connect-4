@@ -18,7 +18,7 @@ function resizeHitboxes() {
 
     var screenWidth = document.documentElement.clientWidth;
     var clickerWidth = screenWidth / 1.75 * 0.1115;
-    var clickerMargin = screenWidth / 179.2;
+    var clickerMargin = screenWidth / 125;
 
     Array.from(document.getElementsByClassName("clicker")).forEach((element, index) => {
 
