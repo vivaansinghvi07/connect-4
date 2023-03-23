@@ -7,6 +7,7 @@
     --BOARDHEIGHT: calc(var(--BOARDWIDTH) * 3 / 4);
     --BOARDCOVERWIDTH: calc(var(--BOARDWIDTH) * 0.78);
     --CLICKERWIDTH: calc(var(--BOARDWIDTH) * 0.09);
+    --PIECEWIDTHHEIGHT: calc(var(--BOARDWIDTH) * 0.08)
 }
 
 html, body {
@@ -33,7 +34,6 @@ html, body {
 
 .boardcover {
     position: absolute;
-    border: 2px solid red;
     width: var(--BOARDCOVERWIDTH);
     height: calc(var(--BOARDHEIGHT) * 0.9);
     left: calc((var(--GAMEWIDTH) - var(--BOARDCOVERWIDTH)) / 2);
@@ -44,4 +44,10 @@ html, body {
     position: absolute;
     height: calc(var(--BOARDHEIGHT) * 0.9);
     width: var(--CLICKERWIDTH);
+}
+
+.piece {
+    position: absolute;
+    height: var(--PIECEWIDTHHEIGHT);
+    width: var(--PIECEWIDTHHEIGHT);
 }
