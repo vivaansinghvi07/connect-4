@@ -35,8 +35,8 @@ class ConnectFour {
         // horizontal check
         for (let y = 0; y < 6; y++) {
             for (let x = 0; x < 4; x++) {
-                if (Math.abs(this.board[y][x] + this.board[y][x+1] + this.board[y][x+2] + this.board[y][x+3])) {
-                    // TODO: animte winning pieces
+                if (Math.abs(this.board[y][x] + this.board[y][x+1] + this.board[y][x+2] + this.board[y][x+3]) === 4) {
+                    this.highlight(y, x, 0, 1);
                 }
             }
         }
@@ -44,8 +44,8 @@ class ConnectFour {
         // vertical check
         for (let x = 0; x < 7; x++) {
             for (let y = 0; y < 3; y++) {
-                if (Math.abs(this.board[y][x] + this.board[y+1][x] + this.board[y+2][x] + this.board[y+3[x]]) === 4) {
-                    // TODO: animate winning pieces
+                if (Math.abs(this.board[y][x] + this.board[y+1][x] + this.board[y+2][x] + this.board[y+3][x]) === 4) {
+                    this.highlight(y, x, 1, 0);
                 }
             }
         }
@@ -53,7 +53,7 @@ class ConnectFour {
         for (let y = 3; y < 6; y++) {
             for (let x = 0; x < 4; x++) {
                 if (Math.abs(this.board[y][x] + this.board[y-1][x+1] + this.board[y-2][x+2] + this.board[y-3][x+3]) === 4) {
-                    // TODO: animate winning pieces
+                    this.highlight(y, x, -1, 1);
                 }
             }
         }
@@ -62,10 +62,30 @@ class ConnectFour {
         for (let y = 0; y < 3; y++) {
             for (let x = 0; x < 4; x++) {
                 if (Math.abs(this.board[y][x] + this.board[y+1][x+1] + this.board[y+2][x+2] + this.board[y+3][x+3]) === 4) {
-                    // TODO: animate winning pieces
+                    this.highlight(y, x, 1, 1);
                 }
             }
         }
+    }
+
+    // highlights winning pieces
+    highlight(y, x, ySign, xSign) {
+        let ids = new Array();
+        for (let i = 0; i < 4; i++) {
+            ids.push(`${y+ySign*i}${x+xSign*i}`);
+        }
+        ids = ids.map((id) => {
+            let ele = document.getElementById(id);
+            ele.style.filter = "brightness(100%)";
+            return ele;
+        })
+        anime({
+            targets: ids,
+            filter: "brightness(50%)", 
+            easing: "easeInQuad",
+            duration: 500
+        });
+        this.over = true;
     }
 
     // places piece at index (x)
@@ -112,8 +132,8 @@ class ConnectFour {
                     // animates movement
                     anime({
                         targets: img,
-                        top: yPos, // -> '250px'
-                        easing: "easeInQuad", //"cubic-bezier(0.365, 0.100, 0.820, 0.335)"
+                        top: yPos,
+                        easing: "easeInQuad",
                         duration: this.time
                     });
                 } catch { }
@@ -126,6 +146,11 @@ class ConnectFour {
 
     // displays the game
     display(width) {
+
+        // skips if over
+        if (this.over) {
+            return;
+        }
 
         // updates width
         this.width = width;
@@ -159,15 +184,32 @@ class ConnectFour {
                 let img = document.createElement("img");
                 img.setAttribute("src", "assets/" + filename + ".png");
                 img.setAttribute("class", "piece");
-                img.setAttribute("id", `${y}${x}`)
+                img.setAttribute("id", `${y}${x}`);
                 img.style.top = String(yPos) + "px";
                 img.style.left = String(xPos) + "px";
                 
                 // adds image to document
                 container.appendChild(img);
 
-
             });
+        });
+    }
+
+    // resizes images
+    resize(width) {
+
+        // calculates height
+        let boardHeight = width / 1.75 * 3 / 4;
+
+        // goes through every piece
+        Array.from(document.getElementsByClassName("piece")).forEach((img)=>{
+
+            // determines y and x indeces based on id
+            let [y, x] = Array.from(img.getAttribute("id")).map((x) => { return parseInt(x) });
+
+            // sets the location based on calculation and the indeces
+            img.style.top = String(boardHeight * 0.1292 * y + boardHeight * 0.131) + "px";
+            img.style.left = String(width / 1.75 * 0.1115 * x + width / 93) + "px";
         });
     }
 }

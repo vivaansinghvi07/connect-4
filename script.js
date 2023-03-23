@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // waits for animation
             setTimeout(() => {
                 game.display(width);
+                game.checkWin();
             }, game.time);
             
             
@@ -41,9 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
             element.style.left = String(index * clickerWidth + clickerMargin) + "px";
 
             // adjusts the position of the images
-            game.display(screenWidth);
+            game.resize(screenWidth);
 
         })
-    }
-    
+    }   
 });
