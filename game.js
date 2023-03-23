@@ -1,7 +1,9 @@
 // class to create a game object
 class ConnectFour {
 
-    constructor(width) {
+    static FLIPTIME = 100;
+
+    constructor(width, turnImageWidth) {
 
         // creates array of pieces
         this.board = [
@@ -27,6 +29,12 @@ class ConnectFour {
 
         // stores if the game is over
         this.over = false;
+
+        // sets the width of the turn image
+        this.turnImageWidth = turnImageWidth;
+
+        // sets the image
+        this.swapTurn();
     
     }
 
@@ -166,13 +174,14 @@ class ConnectFour {
     }
 
     // resizes images
-    resize(width) {
+    resize(width, turnImageWidth) {
 
         // calculates height
         let boardHeight = width / 1.75 * 3 / 4;
 
-        // updates width
+        // updates widths
         this.width = width;
+        this.turnImageWidth = turnImageWidth;
 
         // goes through every piece
         Array.from(document.getElementsByClassName("piece")).forEach((img)=>{
@@ -184,5 +193,49 @@ class ConnectFour {
             img.style.top = String(boardHeight * 0.1292 * y + boardHeight * 0.133) + "px";
             img.style.left = String(width / 1.75 * 0.1116 * x + width / 92) + "px";
         });
+
+        // updates the turn indicator
+        let turnIndicator = document.getElementById("turn-indicator");
+        turnIndicator.style.width = turnImageWidth + "px";
+        turnIndicator.style.height = turnImageWidth + "px";
+    }
+
+    // swaps the image in the turn display
+    swapTurn() {
+
+        // returns if the game is over
+        if (this.over) {
+            return;
+        }
+
+        // gets image
+        let img = document.getElementById("turn-indicator");
+
+        // animate the thing becoming narrower
+        anime({
+            targets: img,
+            width: "0px",
+            left: String(this.turnImageWidth / 2) + "px",
+            easing: "linear",
+            duration: ConnectFour.FLIPTIME
+        });
+
+
+        // waits for the previous animation to finish
+        setTimeout(() => {
+
+            // switches image
+            let filename = this.redTurn ? "red" : "yellow";
+            img.setAttribute("src", `assets/${filename}.png`);
+
+            // animate becoming wider
+            anime({
+                targets: img,
+                width: this.turnImageWidth + "px",
+                left: "0px",
+                easing: "linear",
+                duration: ConnectFour.FLIPTIME
+            });
+        }, ConnectFour.FLIPTIME);
     }
 }

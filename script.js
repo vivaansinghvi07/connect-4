@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // creates game
-    var game = new ConnectFour(document.documentElement.clientWidth);
+    var game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
 
     // fixes hitboxes for whenever the window is resized
     resizeHitboxes(); window.addEventListener('resize', resizeHitboxes);
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // listens for keyb oard lift to re-allow keyboard presses on the move
     document.addEventListener("keyup", function(event) {
 
         // gets the index
@@ -55,6 +56,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
         // plays the piece at the index of the click
         game.placePiece(colNum);
+
+        // swaps the piece in the turn display
+        game.swapTurn();
         
         // waits for animation
         setTimeout(() => {
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             element.style.left = String(index * clickerWidth + clickerMargin) + "px";
 
             // adjusts the position of the images
-            game.resize(screenWidth);
+            game.resize(screenWidth, screenWidth / 1.75 * 0.2);
 
         })
     }   
