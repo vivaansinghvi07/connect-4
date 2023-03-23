@@ -5,7 +5,7 @@
     --GAMEWIDTH: 80vw;
     --BOARDWIDTH: calc(100vw / 1.75);
     --BOARDHEIGHT: calc(var(--BOARDWIDTH) * 3 / 4);
-    --CLICKERSWIDTH: calc(var(--BOARDWIDTH) * 0.78);
+    --BOARDCOVERWIDTH: calc(var(--BOARDWIDTH) * 0.78);
     --CLICKERWIDTH: calc(var(--BOARDWIDTH) * 0.09);
 }
 
@@ -31,11 +31,12 @@ html, body {
     left: calc((var(--GAMEWIDTH) - var(--BOARDWIDTH)) / 2);
 }
 
-.clickers {
+.boardcover {
     position: absolute;
-    width: var(--CLICKERSWIDTH);
+    border: 2px solid red;
+    width: var(--BOARDCOVERWIDTH);
     height: calc(var(--BOARDHEIGHT) * 0.9);
-    left: calc((var(--GAMEWIDTH) - var(--CLICKERSWIDTH)) / 2);
+    left: calc((var(--GAMEWIDTH) - var(--BOARDCOVERWIDTH)) / 2);
     top: calc(-1 * var(--BOARDHEIGHT) / 10);
 }
 
