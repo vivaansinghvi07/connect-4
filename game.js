@@ -76,13 +76,21 @@ class ConnectFour {
         }
 
         // fills id array with the ids of winning pieces
-        let ids = new Array();
+        let excludedIds = new Array();
         for (let i = 0; i < 4; i++) {
-            ids.push(`${y+ySign*i}${x+xSign*i}`);
+            excludedIds.push(`${y+ySign*i}${x+xSign*i}`);
         }
 
+        // gets an array of ids do animation on
+        let ids = new Array();
+        Array.from(document.getElementsByClassName("piece")).forEach((ele) => {
+            if (!excludedIds.includes(ele.getAttribute("id"))) {
+                ids.push(ele.getAttribute("id"));
+            }
+        });
+
         // converts these ids to elements while also adding filters to the elements
-        ids = ids.map((id) => {
+        let elements = ids.map((id) => {
             let ele = document.getElementById(id);
             ele.style.filter = "brightness(100%)";
             return ele;
@@ -90,8 +98,8 @@ class ConnectFour {
 
         // animation highlighting the winning pieces
         anime({
-            targets: ids,
-            filter: "brightness(50%)", 
+            targets: elements,
+            filter: "brightness(40%)", 
             easing: "easeInQuad",
             duration: 500
         });
