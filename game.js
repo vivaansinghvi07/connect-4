@@ -24,11 +24,58 @@ class ConnectFour {
 
         // sets time of animation
         this.time = 0;
+
+        // stores if the game is over
+        this.over = false;
     
+    }
+
+    // checks for a win
+    checkWin() {
+        // horizontal check
+        for (let y = 0; y < 6; y++) {
+            for (let x = 0; x < 4; x++) {
+                if (Math.abs(this.board[y][x] + this.board[y][x+1] + this.board[y][x+2] + this.board[y][x+3])) {
+                    // TODO: animte winning pieces
+                }
+            }
+        }
+
+        // vertical check
+        for (let x = 0; x < 7; x++) {
+            for (let y = 0; y < 3; y++) {
+                if (Math.abs(this.board[y][x] + this.board[y+1][x] + this.board[y+2][x] + this.board[y+3[x]]) === 4) {
+                    // TODO: animate winning pieces
+                }
+            }
+        }
+        // ascending diagonal check
+        for (let y = 3; y < 6; y++) {
+            for (let x = 0; x < 4; x++) {
+                if (Math.abs(this.board[y][x] + this.board[y-1][x+1] + this.board[y-2][x+2] + this.board[y-3][x+3]) === 4) {
+                    // TODO: animate winning pieces
+                }
+            }
+        }
+
+        // descending diagonal check
+        for (let y = 0; y < 3; y++) {
+            for (let x = 0; x < 4; x++) {
+                if (Math.abs(this.board[y][x] + this.board[y+1][x+1] + this.board[y+2][x+2] + this.board[y+3][x+3]) === 4) {
+                    // TODO: animate winning pieces
+                }
+            }
+        }
     }
 
     // places piece at index (x)
     placePiece(index) {
+
+        // exits if over
+        if (this.over) {
+            return;
+        }
+
         for (let y = 0; y < 7; y++) {   // goes down a column
 
             // breaks when a piece is reached
