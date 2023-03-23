@@ -139,6 +139,7 @@ class ConnectFour {
                     let img = document.createElement("img");
                     img.setAttribute("src", "assets/" + filename + ".png");
                     img.setAttribute("class", "piece");
+                    img.setAttribute("id", (y-1)+""+index);
                     img.style.left = String(this.width / 1.75 * 0.1115 * index + this.width / 93) + "px";   // calculation to determine which column to put
                     img.style.top = "0";
                     document.getElementById("imgs").appendChild(img);
@@ -163,63 +164,15 @@ class ConnectFour {
             }
         }
     }
-
-    // displays the game
-    display(width) {
-
-        // skips if over
-        if (this.over) {
-            return;
-        }
-
-        // updates width
-        this.width = width;
-
-        // defines height (of the board) based on what the width is
-        let boardHeight = width / 1.75 * 3 / 4;
-
-        // defines and clears image container
-        let container = document.getElementById("imgs");
-        container.innerHTML = null;
-
-        // iterate through every piece
-        this.board.forEach((row, y) => {
-            row.forEach((piece, x) => {
-
-                // continues if the piece is a 0
-                if (piece === 0) {
-                    return;
-                }
-
-                // calculates the x-pos of the image
-                let xPos = width / 1.75 * 0.1115 * x + width / 93;
-
-                // calculates the y-pos of the image
-                let yPos = boardHeight * 0.1292 * y + boardHeight * 0.131;
-
-                // gets filename
-                let filename = piece === 1 ? "red" : "yellow";
-
-                // displays image
-                let img = document.createElement("img");
-                img.setAttribute("src", "assets/" + filename + ".png");
-                img.setAttribute("class", "piece");
-                img.setAttribute("id", `${y}${x}`);
-                img.style.top = String(yPos) + "px";
-                img.style.left = String(xPos) + "px";
-                
-                // adds image to document
-                container.appendChild(img);
-
-            });
-        });
-    }
-
+    
     // resizes images
     resize(width) {
 
         // calculates height
         let boardHeight = width / 1.75 * 3 / 4;
+
+        // updates width
+        this.width = width;
 
         // goes through every piece
         Array.from(document.getElementsByClassName("piece")).forEach((img)=>{

@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // waits for animation
         setTimeout(() => {
-            game.display(width);
             game.checkWin();
         }, game.time);
     }
