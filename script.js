@@ -13,10 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     });
 
+    // defines the possible moves
+    let moves = ['1', '2', '3', '4', '5', '6', '7'];
+    let indecesMoveable = [true, true, true, true, true, true, true];
+
     // detects keyboard presses
     document.addEventListener("keypress", function(event) {
-        // defines the possible moves
-        let moves = ['1', '2', '3', '4', '5', '6', '7'];
 
         // gets the index
         let index = moves.findIndex((move) => {
@@ -26,8 +28,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // plays if the index is valid
-        if (index !== -1) {
+        if (index !== -1 && indecesMoveable[index]) {
+            indecesMoveable[index] = false;
             play(index);
+        }
+    });
+
+    document.addEventListener("keyup", function(event) {
+
+        // gets the index
+        let index = moves.findIndex((move) => {
+            if (move == event.key) {
+                return true;
+            }
+        });
+
+        // checks if index is illegal
+        if (index !== -1) {
+            indecesMoveable[index] = true;  // makes that number moveable again
         }
     });
 
