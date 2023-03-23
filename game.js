@@ -1,7 +1,7 @@
 // class to create a game object
 class ConnectFour {
 
-    constructor() {
+    constructor(width) {
 
         // creates array of pieces
         this.board = [
@@ -18,6 +18,12 @@ class ConnectFour {
 
         // defines the turn
         this.redTurn = true;
+        
+        // gets the width of the screen
+        this.width = width;
+
+        // sets time of animation
+        this.time = 0;
     
     }
 
@@ -28,10 +34,41 @@ class ConnectFour {
             // breaks when a piece is reached
             if (y === 6 || this.board[y][index] != 0) {
 
+                this.time = 0;
+
                 // tries to place a piece above the other
                 try {
+                    // places piece and switches turn 
                     this.board[y-1][index] = this.redTurn ? 1 : -1;
                     this.redTurn = !this.redTurn;
+
+                    // gets the image file for the piece
+                    let filename = !this.redTurn ? "red" : "yellow";
+
+                    // calculates board height
+                    let boardHeight = this.width / 1.75 * 3 / 4;
+
+                    // creates image
+                    let img = document.createElement("img");
+                    img.setAttribute("src", "assets/" + filename + ".png");
+                    img.setAttribute("class", "piece");
+                    img.style.left = String(this.width / 1.75 * 0.1115 * index + this.width / 93) + "px";   // calculation to determine which column to put
+                    img.style.top = "0";
+                    document.getElementById("imgs").appendChild(img);
+
+                    // calculates the row its on
+                    let yPos = String(boardHeight * 0.1292 * (y-1) + boardHeight * 0.131) + "px";  
+
+                    // sets new time
+                    this.time = 175 * Math.sqrt(y)
+
+                    // animates movement
+                    anime({
+                        targets: img,
+                        top: yPos, // -> '250px'
+                        easing: "easeInQuad", //"cubic-bezier(0.365, 0.100, 0.820, 0.335)"
+                        duration: this.time
+                    });
                 } catch { }
 
                 // exit loop by returning
@@ -42,6 +79,9 @@ class ConnectFour {
 
     // displays the game
     display(width) {
+
+        // updates width
+        this.width = width;
 
         // defines height (of the board) based on what the width is
         let boardHeight = width / 1.75 * 3 / 4;
@@ -71,8 +111,8 @@ class ConnectFour {
                 // displays image
                 let img = document.createElement("img");
                 img.setAttribute("src", "assets/" + filename + ".png");
-                img.setAttribute("id", y + "" + x);
                 img.setAttribute("class", "piece");
+                img.setAttribute("id", `${y}${x}`)
                 img.style.top = String(yPos) + "px";
                 img.style.left = String(xPos) + "px";
                 
