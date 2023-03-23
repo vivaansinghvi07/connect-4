@@ -140,12 +140,12 @@ class ConnectFour {
                     img.setAttribute("src", "assets/" + filename + ".png");
                     img.setAttribute("class", "piece");
                     img.setAttribute("id", (y-1)+""+index);
-                    img.style.left = String(this.width / 1.75 * 0.1115 * index + this.width / 93) + "px";   // calculation to determine which column to put
+                    img.style.left = String(this.width / 1.75 * 0.1116 * index + this.width / 92) + "px";   // calculation to determine which column to put
                     img.style.top = "0";
                     document.getElementById("imgs").appendChild(img);
 
                     // calculates the row its on
-                    let yPos = String(boardHeight * 0.1292 * (y-1) + boardHeight * 0.131) + "px";  
+                    let yPos = String(boardHeight * 0.1292 * (y-1) + boardHeight * 0.133) + "px";  
 
                     // sets new time
                     this.time = 175 * Math.sqrt(y)
@@ -164,7 +164,7 @@ class ConnectFour {
             }
         }
     }
-    
+
     // resizes images
     resize(width) {
 
@@ -181,8 +181,8 @@ class ConnectFour {
             let [y, x] = Array.from(img.getAttribute("id")).map((x) => { return parseInt(x) });
 
             // sets the location based on calculation and the indeces
-            img.style.top = String(boardHeight * 0.1292 * y + boardHeight * 0.131) + "px";
-            img.style.left = String(width / 1.75 * 0.1115 * x + width / 93) + "px";
+            img.style.top = String(boardHeight * 0.1292 * y + boardHeight * 0.133) + "px";
+            img.style.left = String(width / 1.75 * 0.1116 * x + width / 92) + "px";
         });
     }
 }
