@@ -70,6 +70,9 @@ class ConnectFour {
 
     // highlights winning pieces
     highlight(y, x, ySign, xSign) {
+        if (this.over) {
+            return;
+        }
         let ids = new Array();
         for (let i = 0; i < 4; i++) {
             ids.push(`${y+ySign*i}${x+xSign*i}`);
