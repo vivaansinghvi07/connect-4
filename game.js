@@ -70,24 +70,33 @@ class ConnectFour {
 
     // highlights winning pieces
     highlight(y, x, ySign, xSign) {
+        // returns if game is over
         if (this.over) {
             return;
         }
+
+        // fills id array with the ids of winning pieces
         let ids = new Array();
         for (let i = 0; i < 4; i++) {
             ids.push(`${y+ySign*i}${x+xSign*i}`);
         }
+
+        // converts these ids to elements while also adding filters to the elements
         ids = ids.map((id) => {
             let ele = document.getElementById(id);
             ele.style.filter = "brightness(100%)";
             return ele;
         })
+
+        // animation highlighting the winning pieces
         anime({
             targets: ids,
             filter: "brightness(50%)", 
             easing: "easeInQuad",
             duration: 500
         });
+
+        // sets game to be over
         this.over = true;
     }
 
