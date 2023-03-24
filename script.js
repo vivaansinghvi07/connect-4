@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    // stores if we should commence playing or not
+    var commence = true;
+
     // creates game
     var game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
 
@@ -48,11 +51,54 @@ document.addEventListener("DOMContentLoaded", function() {
         if (index !== -1) {
             indecesMoveable[index] = true;  // makes that number moveable again
         }
+
+    });
+
+    // listens for resetting game
+    let resetButton = document.getElementById("reset");
+    resetButton.addEventListener("click", () => {
+
+        // times out game
+        commence = false;
+
+        // resets rotation
+        resetButton.style.transform = "rotate(0deg)";
+        
+        // animates button rotating
+        anime({
+            targets: resetButton,
+            rotate: "360deg", 
+            easing: "spring(1, 80, 10, 0)",
+        });
+
+        // animates images leaving
+        let time = 1000;
+        anime({
+            targets: document.getElementsByClassName("piece"),
+            top: {
+                value: `+=${document.documentElement.clientHeight}px`
+            },
+            easing: "easeInQuad",
+            duration: time
+        })
+
+        // clears images and allows playing
+        setTimeout(() => {
+            document.getElementById("imgs").innerHTML = null;
+            commence = true;
+        }, time);
+        
+        // creates new game 
+        game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
+
     });
 
     function play(colNum) {
-        // defines height and width
-        let width = document.documentElement.clientWidth;
+        
+        // quits if we cannot commence with a move
+        if (!commence) {
+            return;
+        }
             
         // plays the piece at the index of the click
         game.placePiece(colNum);
