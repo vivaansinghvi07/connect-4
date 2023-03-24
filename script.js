@@ -92,6 +92,48 @@ document.addEventListener("DOMContentLoaded", function() {
         game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
 
     });
+    
+    // detects for into button being pressed
+    document.getElementById("info").addEventListener("click", function() {
+
+        // times out game
+        commence = false;
+
+        // animates the div showing
+        let infoText = document.querySelector(".rules");
+        infoText.removeAttribute("hidden");
+        anime({
+            targets: infoText,
+            filter: "opacity(100%)",
+            duration: 200,
+            easing: "easeInQuad"
+        });
+
+        // animates background blur
+        let dimmer = document.querySelector(".screen-dimmer");
+        dimmer.removeAttribute("hidden");
+        anime({
+            targets: dimmer,
+            filter: "opacity(75%)",
+            duration: 200,
+            easing: "easeInQuad"
+        });
+
+    });
+
+    // detects for x-button being pressed
+    document.querySelector(".x-button").addEventListener("click", function() {
+
+        // un-hides background and removes rules page
+        document.querySelector(".rules").style.filter = "opacity(0%)";
+        document.querySelector(".rules").setAttribute("hidden", "hidden");
+        document.querySelector(".screen-dimmer").style.filter = "opacity(0%)";
+        document.querySelector(".screen-dimmer").setAttribute("hidden", "hidden");
+
+        // un-times out game
+        commence = true;
+        console.log("x");
+    });
 
     function play(colNum) {
         
