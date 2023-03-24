@@ -3,7 +3,7 @@
     <title>
         Connect 4
     </title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src = "anime.js"></script>
     <script src = "game.js"></script>
     <script src = "script.js"></script>
     <link href = "style.css" rel = "stylesheet">
@@ -29,6 +29,22 @@
 
         <!-- Image of board -->
         <img src = "assets/gameboard.png" class = "board">
+
+        <!-- Diplay rules -->
+        <div class = "rules">
+            <div class = "rules-title">
+                Information
+            </div>
+            <div class = "rules-text">
+                Welcome to Connect Four! In this game, each player alternates placing a piece onto a column until either all columns are full,
+                or one player gets four of their own pieces in a row!
+                <br><br>
+                You can play by clicking on the column you want to place your piece on, or using the number keys (1-7) to place a piece in its
+                corresponding column.
+                <br><br>
+                Source code for this game can be found <a class = "link">here</a>. Click anywhere outside the box to close.
+            </div>
+        </div>
 
         <!-- 7 Click detectors for 7 rows -->
         <div class = "boardcover">
