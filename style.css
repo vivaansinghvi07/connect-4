@@ -119,7 +119,7 @@ html, body {
 }
 
 .rules-text {
-    font-size: calc(var(--RULESTITLEFONTSIZE) * 0.5);
+    font-size: calc(var(--RULESTITLEFONTSIZE) * 0.55);
     margin: 0 calc(var(--RULESTITLEFONTSIZE) * 0.5);
 }
 
