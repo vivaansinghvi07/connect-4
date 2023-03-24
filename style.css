@@ -90,9 +90,10 @@ html, body {
     left: calc((var(--BUTTONSWIDTH) - var(--BUTTONWIDTHHEIGHT)) / 2);
     width: var(--BUTTONWIDTHHEIGHT);
     height: var(--BUTTONWIDTHHEIGHT);
-    margin: calc(var(--BUTTONWIDTHHEIGHT) * 1.5) auto;
+    top: calc(var(--BUTTONWIDTHHEIGHT) * 2);
+    margin: 0px auto;
 }
 
 #info {
-    top: calc(var(--BUTTONWIDTHHEIGHT) * 1.5);
+    top: calc(var(--BUTTONWIDTHHEIGHT) * 3.75);
 }
