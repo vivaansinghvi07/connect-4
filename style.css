@@ -119,7 +119,7 @@ html, body {
 }
 
 .rules-text {
-    font-size: calc(var(--RULESTITLEFONTSIZE) * 0.6);
+    font-size: calc(var(--RULESTITLEFONTSIZE) * 0.5);
     margin: 0 calc(var(--RULESTITLEFONTSIZE) * 0.5);
 }
 
@@ -137,4 +137,12 @@ html, body {
     height: calc(var(--PIECEWIDTHHEIGHT) / 2);
     left: calc(var(--RULESWIDTH) * 0.87);
     top: calc(var(--RULESHEIGHT) * 0.07);
+}
+
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: blue;
 }
