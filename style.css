@@ -31,6 +31,7 @@ html, body {
     height: var(--BOARDHEIGHT);
     width: var(--BOARDWIDTH);
     left: calc((var(--GAMEWIDTH) - var(--BOARDWIDTH)) / 2);
+    top: 0;
 }
 
 .boardcover {
