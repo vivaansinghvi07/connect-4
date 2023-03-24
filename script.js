@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // detects keyboard presses
     document.addEventListener("keypress", function(event) {
+        console.log(event.key);
 
         // gets the index
         let index = moves.findIndex((move) => {
@@ -30,8 +31,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        // checks if the keypress is a 'r' (reset) or 'e' (close instructions)
+        if ((event.key === 'r' || event.key === 'R') && commence) {
+            resetGame();
+        } else if (event.key === 'e' || event.key === 'E') {
+            hideInstructions();
+        }
+
         // plays if the index is valid
-        if (index !== -1 && indecesMoveable[index]) {
+        else if (index !== -1 && indecesMoveable[index]) {
             indecesMoveable[index] = false;
             play(index);
         }
@@ -57,40 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // listens for resetting game
     let resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", () => {
-
-        // times out game
-        commence = false;
-
-        // resets rotation
-        resetButton.style.transform = "rotate(0deg)";
-        
-        // animates button rotating
-        anime({
-            targets: resetButton,
-            rotate: "360deg", 
-            easing: "spring(1, 80, 10, 0)",
-        });
-
-        // animates images leaving
-        let time = 1000;
-        anime({
-            targets: document.getElementsByClassName("piece"),
-            top: {
-                value: `+=${document.documentElement.clientHeight}px`
-            },
-            easing: "easeInQuad",
-            duration: time
-        })
-
-        // clears images and allows playing
-        setTimeout(() => {
-            document.getElementById("imgs").innerHTML = null;
-            commence = true;
-        }, time);
-        
-        // creates new game 
-        game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
-
+        resetGame();
     });
     
     // detects for into button being pressed
@@ -125,14 +100,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".x-button").addEventListener("click", function() {
 
         // un-hides background and removes rules page
-        document.querySelector(".rules").style.filter = "opacity(0%)";
-        document.querySelector(".rules").setAttribute("hidden", "hidden");
-        document.querySelector(".screen-dimmer").style.filter = "opacity(0%)";
-        document.querySelector(".screen-dimmer").setAttribute("hidden", "hidden");
+        hideInstructions();
 
-        // un-times out game
-        commence = true;
-        console.log("x");
     });
 
     function play(colNum) {
@@ -173,4 +142,55 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     }   
+
+    // hides instructions
+    function hideInstructions() {
+        
+        // resets opacity and hides instructions
+        document.querySelector(".rules").style.filter = "opacity(0%)";
+        document.querySelector(".rules").setAttribute("hidden", "hidden");
+        document.querySelector(".screen-dimmer").style.filter = "opacity(0%)";
+        document.querySelector(".screen-dimmer").setAttribute("hidden", "hidden");
+
+        // allows playing (waits to be safe)
+        setTimeout(() => {
+            commence = true;
+        }, 1000);
+    }
+
+    // resets the game
+    function resetGame() {
+        // times out game
+        commence = false;
+
+        // resets rotation
+        resetButton.style.transform = "rotate(0deg)";
+        
+        // animates button rotating
+        anime({
+            targets: resetButton,
+            rotate: "360deg", 
+            easing: "spring(1, 80, 10, 0)",
+        });
+
+        // animates images leaving
+        let time = 1000;
+        anime({
+            targets: document.getElementsByClassName("piece"),
+            top: {
+                value: `+=${document.documentElement.clientHeight}px`
+            },
+            easing: "easeInQuad",
+            duration: time
+        })
+
+        // clears images and allows playing
+        setTimeout(() => {
+            document.getElementById("imgs").innerHTML = null;
+            commence = true;
+        }, time);
+        
+        // creates new game 
+        game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
+    }
 });
