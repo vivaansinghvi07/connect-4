@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // stores if we should commence playing or not
-    var commence = true;
+    var resetCommence = true, escCommence = true;
 
     // creates game
     var game = new ConnectFour(document.documentElement.clientWidth, document.documentElement.clientWidth / 1.75 * 0.2);
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // detects keyboard presses
     document.addEventListener("keypress", function(event) {
-        console.log(event.key);
 
         // gets the index
         let index = moves.findIndex((move) => {
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // checks if the keypress is a 'r' (reset) or 'e' (close instructions)
-        if ((event.key === 'r' || event.key === 'R') && commence) {
+        if ((event.key === 'r' || event.key === 'R') && escCommence) {
             resetGame();
         } else if (event.key === 'e' || event.key === 'E') {
             hideInstructions();
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("info").addEventListener("click", function() {
 
         // times out game
-        commence = false;
+        escCommence = false;
 
         // animates the div showing
         let infoText = document.querySelector(".rules");
@@ -107,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function play(colNum) {
         
         // quits if we cannot commence with a move
-        if (!commence) {
+        if (!resetCommence || !escCommence) {
             return;
         }
             
@@ -145,6 +144,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // hides instructions
     function hideInstructions() {
+
+        // quits if not commenceable
+        if (!resetCommence) {
+            return;
+        }
         
         // resets opacity and hides instructions
         document.querySelector(".rules").style.filter = "opacity(0%)";
@@ -152,16 +156,20 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".screen-dimmer").style.filter = "opacity(0%)";
         document.querySelector(".screen-dimmer").setAttribute("hidden", "hidden");
 
-        // allows playing (waits to be safe)
-        setTimeout(() => {
-            commence = true;
-        }, 1000);
+        // allows playing 
+        escCommence = true;
     }
 
     // resets the game
     function resetGame() {
+
+        // returns if another reset is happening
+        if (!resetCommence) {
+            return;
+        }
+
         // times out game
-        commence = false;
+        resetCommence = false;
 
         // resets rotation
         resetButton.style.transform = "rotate(0deg)";
@@ -187,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // clears images and allows playing
         setTimeout(() => {
             document.getElementById("imgs").innerHTML = null;
-            commence = true;
+            resetCommence = true;
         }, time);
         
         // creates new game 
