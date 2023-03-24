@@ -1,6 +1,7 @@
 // class to create a game object
 class ConnectFour {
 
+    // stores the time it takes for the turn indicator piece to flip
     static FLIPTIME = 100;
 
     constructor(width, turnImageWidth) {
@@ -34,7 +35,6 @@ class ConnectFour {
         this.starting = true;
         this.swapTurn(); 
 
-    
     }
 
     // checks for a win
@@ -155,7 +155,7 @@ class ConnectFour {
                     let yPos = String(boardHeight * 0.1292 * (y-1) + boardHeight * 0.133) + "px";  
 
                     // sets new time
-                    this.time = 175 * Math.sqrt(y)
+                    this.time = 175 * Math.sqrt(y);
 
                     // animates movement
                     anime({
