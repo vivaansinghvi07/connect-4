@@ -21,30 +21,22 @@
             <img id = "turn-indicator">
         </div>
 
+        <!-- Image of board -->
+        <img src = "assets/gameboard.png" class = "board">
+
         <!-- Contains important buttons! -->
         <div class = "buttons">
             <img class = "button" id = "reset" src = "assets/reset.png">
             <img class = "button" id = "info"  src = "assets/info.png">
         </div>
+    </div>
 
-        <!-- Image of board -->
-        <img src = "assets/gameboard.png" class = "board">
+    <!-- Dims everything but the rules -->
+    <div hidden = "hidden" class = "screen-dimmer">
+        <!-- Styles adjusted to show blackness -->
+    </div>
 
-        <!-- Diplay rules -->
-        <div class = "rules">
-            <div class = "rules-title">
-                Information
-            </div>
-            <div class = "rules-text">
-                Welcome to Connect Four! In this game, each player alternates placing a piece onto a column until either all columns are full,
-                or one player gets four of their own pieces in a row!
-                <br><br>
-                You can play by clicking on the column you want to place your piece on, or using the number keys (1-7) to place a piece in its
-                corresponding column.
-                <br><br>
-                Source code for this game can be found <a class = "link">here</a>. Click anywhere outside the box to close.
-            </div>
-        </div>
+    <div class = "game">
 
         <!-- 7 Click detectors for 7 rows -->
         <div class = "boardcover">
@@ -56,5 +48,23 @@
             <div class = "clicker"></div>
             <div class = "clicker"></div>
         </div>
+
+        <!-- Diplay rules -->
+        <div hidden = "hidden" class = "rules">
+            <div class = "rules-title">
+                Information
+            </div>
+            <img class = "x-button" src = "assets/x-button.png">
+            <div class = "rules-text">
+                Welcome to Connect Four! In this game, each player alternates placing a piece onto a column until either all columns are full,
+                or one player gets four of their own pieces in a row!
+                <br><br>
+                You can play by clicking on the column you want to place your piece on, or using the number keys (1-7) to place a piece in its
+                corresponding column.
+                <br><br>
+                Source code for this game can be found <a class = "link">here</a>. Click anywhere outside the box to close.
+            </div>
+        </div>
     </div>
+
 </body>

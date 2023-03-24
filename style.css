@@ -109,6 +109,7 @@ html, body {
     top: calc((var(--BOARDHEIGHT) - var(--RULESHEIGHT)) / 4);
     background-color: rgb(165, 165, 165);
     border-radius: 10%;
+    filter: opacity(0%);
 }
 
 .rules-title {
@@ -120,4 +121,20 @@ html, body {
 .rules-text {
     font-size: calc(var(--RULESTITLEFONTSIZE) * 0.6);
     margin: 0 calc(var(--RULESTITLEFONTSIZE) * 0.5);
+}
+
+.screen-dimmer {
+    position: absolute;
+    height: 100%;
+    width: var(--GAMEWIDTH);
+    background-color: black;
+    filter: opacity(0%);
+}
+
+.x-button {
+    position: absolute;
+    width: calc(var(--PIECEWIDTHHEIGHT) / 2);
+    height: calc(var(--PIECEWIDTHHEIGHT) / 2);
+    left: calc(var(--RULESWIDTH) * 0.87);
+    top: calc(var(--RULESHEIGHT) * 0.07);
 }
