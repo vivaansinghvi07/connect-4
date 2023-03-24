@@ -11,6 +11,9 @@
     --TURNINDICATORWIDTHHEIGHT: calc(var(--BOARDWIDTH) * 0.2);
     --BUTTONSWIDTH: var(--TURNINDICATORWIDTHHEIGHT);
     --BUTTONWIDTHHEIGHT: calc(var(--TURNINDICATORWIDTHHEIGHT) * 0.5);
+    --RULESWIDTH: calc(var(--BOARDWIDTH) * 0.7);
+    --RULESHEIGHT: calc(var(--BOARDHEIGHT) * 0.7);
+    --RULESTITLEFONTSIZE: calc(var(--BOARDWIDTH) * 0.04);
 }
 
 html, body {
@@ -96,4 +99,25 @@ html, body {
 
 #info {
     top: calc(var(--BUTTONWIDTHHEIGHT) * 3.75);
+}
+
+.rules { 
+    position: absolute;
+    width: var(--RULESWIDTH);
+    height: var(--RULESHEIGHT);
+    left: calc((var(--GAMEWIDTH) - var(--RULESWIDTH)) / 2);
+    top: calc((var(--BOARDHEIGHT) - var(--RULESHEIGHT)) / 4);
+    background-color: rgb(165, 165, 165);
+    border-radius: 10%;
+}
+
+.rules-title {
+    text-align: center;
+    margin: calc(var(--RULESTITLEFONTSIZE) * 0.75) auto;
+    font-size: var(--RULESTITLEFONTSIZE);
+}
+
+.rules-text {
+    font-size: calc(var(--RULESTITLEFONTSIZE) * 0.6);
+    margin: 0 calc(var(--RULESTITLEFONTSIZE) * 0.5);
 }
