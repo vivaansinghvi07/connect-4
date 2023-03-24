@@ -15,9 +15,6 @@ class ConnectFour {
             [0, 0, 0, 0, 0, 0, 0]
         ];
 
-        // defines the animation that needs to be done
-        this.animation = {startX: -1, destX: -1, startY: -1, destY: -1};
-
         // defines the turn
         this.redTurn = true;
         
@@ -33,8 +30,10 @@ class ConnectFour {
         // sets the width of the turn image
         this.turnImageWidth = turnImageWidth;
 
-        // sets the image
-        this.swapTurn();
+        // sets the image and starting value
+        this.starting = true;
+        this.swapTurn(); 
+
     
     }
 
@@ -210,6 +209,13 @@ class ConnectFour {
 
         // gets image
         let img = document.getElementById("turn-indicator");
+        
+        // if just starting, don't animate
+        if (this.starting) {
+            img.setAttribute("src", "assets/red.png");
+            this.starting = false;
+            return;
+        }
 
         // animate the thing becoming narrower
         anime({
