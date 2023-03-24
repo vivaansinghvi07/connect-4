@@ -9,6 +9,8 @@
     --CLICKERWIDTH: calc(var(--BOARDWIDTH) * 0.09);
     --PIECEWIDTHHEIGHT: calc(var(--BOARDWIDTH) * 0.08);
     --TURNINDICATORWIDTHHEIGHT: calc(var(--BOARDWIDTH) * 0.2);
+    --BUTTONSWIDTH: var(--TURNINDICATORWIDTHHEIGHT);
+    --BUTTONWIDTHHEIGHT: calc(var(--TURNINDICATORWIDTHHEIGHT) * 0.5);
 }
 
 html, body {
@@ -58,8 +60,8 @@ html, body {
     position: absolute;
     width: var(--TURNINDICATORWIDTHHEIGHT);
     height: var(--TURNINDICATORWIDTHHEIGHT);
-    left: calc(0px + var(--TURNINDICATORWIDTHHEIGHT) / 1.7);
-    top: calc((0px + var(--TURNINDICATORWIDTHHEIGHT)) * 1.4);
+    left: calc(var(--TURNINDICATORWIDTHHEIGHT) / 1.7);
+    top: calc(var(--TURNINDICATORWIDTHHEIGHT) * 1.4);
 }
 
 #turn-indicator {
@@ -74,4 +76,23 @@ html, body {
     text-align: center;
     top: calc(-1 * var(--TURNINDICATORWIDTHHEIGHT) / 2.5);
     width: var(--TURNINDICATORWIDTHHEIGHT);
+}
+
+.buttons {
+    position: absolute;
+    left: calc(var(--GAMEWIDTH) / 1.23);
+    width: var(--BUTTONSWIDTH);
+    height: var(--BOARDHEIGHT);
+}
+
+.button {
+    position: absolute;
+    left: calc((var(--BUTTONSWIDTH) - var(--BUTTONWIDTHHEIGHT)) / 2);
+    width: var(--BUTTONWIDTHHEIGHT);
+    height: var(--BUTTONWIDTHHEIGHT);
+    margin: calc(var(--BUTTONWIDTHHEIGHT) * 1.5) auto;
+}
+
+#info {
+    top: calc(var(--BUTTONWIDTHHEIGHT) * 1.5);
 }
