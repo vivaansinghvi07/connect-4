@@ -25,8 +25,9 @@ class ConnectFour {
         // sets time of animation
         this.time = 0;
 
-        // stores if the game is over
+        // stores game status
         this.over = false;
+        this.tempSkip = false;
 
         // sets the width of the turn image
         this.turnImageWidth = turnImageWidth;
@@ -164,7 +165,9 @@ class ConnectFour {
                         easing: "easeInQuad",
                         duration: this.time
                     });
-                } catch { }
+                } catch {
+                    this.tempSkip = true;   // signals to temporarily skip turn indicator animation
+                }
 
                 // exit loop by returning
                 return;
@@ -204,6 +207,9 @@ class ConnectFour {
 
         // returns if the game is over
         if (this.over) {
+            return;
+        } else if (this.tempSkip) {     // checks if this needs to be skipped once
+            this.tempSkip = false;
             return;
         }
 
