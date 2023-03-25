@@ -1,6 +1,10 @@
 # Connect Four
 A two-player version of Connect Four! To play, simply visit the webpage [here](https://vivaansinghvi07.github.io/connect-four/). This game is meant to be played on a horizontal display.
 
+## Credits
+- Animation would not be possible if not for the [animejs](https://animejs.com/) library.
+- Assets (such as the pieces and the board) were made in Google Drawings.
+
 ## Features
 - Smooth animations for every aspect of the game (placing pieces, resetting the board, and even highlighting a winning combination)
 - Automatic, fast win detection
