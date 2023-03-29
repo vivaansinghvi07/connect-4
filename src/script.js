@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
             targets: infoText,
             filter: "opacity(100%)",
-            duration: 200,
-            easing: "easeInQuad"
+            duration: 150,
+            easing: "linear"
         });
 
         // animates background blur
@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
             targets: dimmer,
             filter: "opacity(75%)",
-            duration: 200,
-            easing: "easeInQuad"
+            duration: 150,
+            easing: "linear"
         });
 
     });
